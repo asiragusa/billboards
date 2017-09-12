@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  billboards:
+    build:
+      context: .
+
+  test:
+    image: golang:1.9
+    working_dir: /go/src/github.com/asiragusa/billboards
+    volumes:
+      - .:/go/src/github.com/asiragusa/billboards
+    entrypoint:
+      - go
+      - test
+
+  glide:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /go/src/github.com/asiragusa/billboards
+    volumes:
+      - .:/go/src/github.com/asiragusa/billboards
+    entrypoint:
+      - glide
+
+  fmt:
+    image: golang:1.9
+    working_dir: /go/src/github.com/asiragusa/billboards
+    volumes:
+      - .:/go/src/github.com/asiragusa/billboards
+    entrypoint:
+      - go
+      - fmt
+
+  go:
+    image: golang:1.9
+    working_dir: /go/src/github.com/asiragusa/billboards
+    volumes:
+      - .:/go/src/github.com/asiragusa/billboards
+    entrypoint:
+      - go
